@@ -8,6 +8,11 @@ public class Line : MonoBehaviour
     public EdgeCollider2D edgeCollider;
     public float floatDistance = .1f;
 
+        /*
+            To calculate the amount of ink used, use the floatDistance variable * the list's points.Count
+            Send this to the MasterScript, which will keep track of it.
+         */
+
     List<Vector2> points;
 
     //Function is public because it needs to be accessed by the 
