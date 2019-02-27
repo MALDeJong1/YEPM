@@ -14,5 +14,6 @@ This is the repository of group 7 for the G54SPM module.
 * [Document Repository](https://drive.google.com/drive/folders/155DMzVQ1_57tUcMOqVGTOvObtEzW8cQx?usp=sharing)
 
 ## Dependencies and Installation Instructions
-List of dependencies and installation instructions.  
-Coming soon (tm)
+Unity version used in development: 2018.2.0f2
+
+More coming soon! (tm)
