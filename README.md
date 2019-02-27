@@ -1,5 +1,5 @@
 # G54SPM Coursework
-This is the repository of group 7 for the g54spm module.
+This is the repository of group 7 for the G54SPM module.
 
 ## Team name: YEPM++
 
