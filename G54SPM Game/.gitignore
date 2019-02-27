@@ -1,0 +1,12 @@
+# Start by ignoring everything, then Whitelist what needs to be pulled in.
+/*
+/*/
+
+#Git meta files
+!.gitignore
+!.gitattributes
+!README.md
+
+#Whitelisted directories/files
+!/ProjectSettings/
+!/Assets/
