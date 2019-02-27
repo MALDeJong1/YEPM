@@ -18,8 +18,7 @@ public class MasterScript : MonoBehaviour {
         // Below commented out code changes value of playingState when space is pressed.
         // Refactor for proper implementation of state change, including a level reset when it
         // cycles back from true to false. 
-
-       /* if (Input.GetKeyDown("space"))
+       if (Input.GetKeyDown("space"))
         {
             if (playingState)
             {
@@ -29,7 +28,7 @@ public class MasterScript : MonoBehaviour {
             {
                 playingState = true;
            }
-        } */
+        } 
     }
 
 
