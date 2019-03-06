@@ -29,10 +29,8 @@ public class Line : MonoBehaviour
         // If points List is already set up and this is not the first point.
         // Check if the mouse has moved enough to need to insert new point.
         // If it has, insert point at mouse position.
-
         if (Vector2.Distance(points.Last(), mousePosition) > floatDistance)
             SetPoint(mousePosition);
-
     }
 
     void SetPoint(Vector2 point)
