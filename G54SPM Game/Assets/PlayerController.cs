@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D rb;
     private MasterScript masterScript;
@@ -24,6 +24,11 @@ public class TestScript : MonoBehaviour {
         if (!masterScript.playingState)
         {
             rb.bodyType = RigidbodyType2D.Static;
-        }	
-	}
+        }
+
+        // Define boundary of level within the MasterScript, then have the player detect whether it's beyond those bounds.
+        // If it is, reset the scene. Using the following line of code: Application.LoadLevel(Application.loadedLevel);
+
+
+    }
 }
