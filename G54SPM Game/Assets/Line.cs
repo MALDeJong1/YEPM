@@ -7,13 +7,21 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float floatDistance = .1f;
+    private MasterScript masterScript;
+    private GameObject gameController;
 
-        /*
-            To calculate the amount of ink used, use the floatDistance variable * the list's points.Count
-            Send this to the MasterScript, which will keep track of it.
-         */
+    /*
+        To calculate the amount of ink used, use the floatDistance variable * the list's points.Count
+        Send this to the MasterScript, which will keep track of it.
+     */
 
     List<Vector2> points;
+
+    void Start()
+    {
+        gameController = GameObject.Find("GameController");
+        masterScript = gameController.GetComponent<MasterScript>();
+    }
 
     //Function is public because it needs to be accessed by the 
     //Script that will be creating the lines. 
@@ -44,4 +52,11 @@ public class Line : MonoBehaviour
             edgeCollider.points = points.ToArray();
     }
 
+    void Update()
+    {
+        if (!masterScript.playingState && Input.GetKeyDown(KeyCode.C))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
