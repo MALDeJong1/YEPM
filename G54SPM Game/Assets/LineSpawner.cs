@@ -6,22 +6,20 @@ public class LineSpawner : MonoBehaviour
 {
 
     public GameObject linePrefab;
-    private MasterScript masterScript;
-    private GameObject gameController;
+    //private GameObject gameController;
 
     Line activeLine;
 
     // Use this for initialization
     void Start()
     {
-        gameController = GameObject.Find("GameController");
-        masterScript = gameController.GetComponent<MasterScript>();
+       // gameController = GameObject.Find("GameController");
     }
 
     void Update()
     {
         //If the game is in its playingState, we're not allowed to draw any more lines. :)
-        if (!masterScript.playingState)
+        if (!MasterScript.playingState)
         {
             if (Input.GetMouseButtonDown(0))
             {

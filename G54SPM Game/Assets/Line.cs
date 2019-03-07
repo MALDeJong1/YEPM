@@ -7,8 +7,7 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float floatDistance = .1f;
-    private MasterScript masterScript;
-    private GameObject gameController;
+   // private GameObject gameController;
 
     /*
         To calculate the amount of ink used, use the floatDistance variable * the list's points.Count
@@ -19,8 +18,7 @@ public class Line : MonoBehaviour
 
     void Start()
     {
-        gameController = GameObject.Find("GameController");
-        masterScript = gameController.GetComponent<MasterScript>();
+       // gameController = GameObject.Find("GameController");
     }
 
     //Function is public because it needs to be accessed by the 
@@ -54,7 +52,7 @@ public class Line : MonoBehaviour
 
     void Update()
     {
-        if (!masterScript.playingState && Input.GetKeyDown(KeyCode.C))
+        if (!MasterScript.playingState && Input.GetKeyDown(KeyCode.C))
         {
             Destroy(this.gameObject);
         }
