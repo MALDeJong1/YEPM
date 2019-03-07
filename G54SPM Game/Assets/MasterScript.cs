@@ -5,7 +5,6 @@ public class MasterScript : MonoBehaviour {
 
     public static MasterScript gameController;
     public static bool playingState = false;    //Keeps trackof whether the game is currently in set up or playing stage.
-    public static int spawnDelay = 2;
 
     // Boundary Variables
     public static int minY = -8;
@@ -19,6 +18,8 @@ public class MasterScript : MonoBehaviour {
     // Respawn Variables
     public Transform playerCharacter;
     public Transform spawnPoint;
+    public Transform spawnEffect;
+    public int spawnDelay = 1;
 
     // Instantiates MasterScript and spawns initial Player Character.
     void Start () {
@@ -55,18 +56,23 @@ public class MasterScript : MonoBehaviour {
     }
 
     // Function for respawning player after player death.
-    public void RespawnPlayer()
+    public IEnumerator RespawnPlayer()
     {
+        Debug.Log("Respawn has been called.");
+        yield return new WaitForSeconds(spawnDelay);
+
+        Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation);
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
-        playingState = false;
-        //Debug.Log("Particles go here!");
+        playingState = false; //Return to drawing state.
     }
 
     // Function to kill the player. Destroys the player object and calls respawn to spawn new player object.
     public static void KillPlayer(PlayerController player)
     {
+        Debug.Log("KillPlayer was called.");
         Destroy(player.gameObject);
-        gameController.RespawnPlayer();
+        //gameController.RespawnPlayer();
+        gameController.StartCoroutine(gameController.RespawnPlayer());
     }
 
     // Function to set ink resource back to full.
