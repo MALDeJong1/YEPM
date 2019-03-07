@@ -13,6 +13,9 @@ public class MasterScript : MonoBehaviour {
     public static int minX = -16;
     public static int maxX = 16;
 
+    // Basic Game Logic Variables
+    private int ink; //Stores ink resource.
+
     // Respawn Variables
     public Transform playerCharacter;
     public Transform spawnPoint;
@@ -22,7 +25,8 @@ public class MasterScript : MonoBehaviour {
         if (gameController == null)
         { 
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MasterScript>();
-            SpawnPlayer(); 
+            SpawnPlayer();
+            FillInkResource();
         }     		
 	}
 
@@ -58,11 +62,17 @@ public class MasterScript : MonoBehaviour {
         //Debug.Log("Particles go here!");
     }
 
+    // Function to kill the player. Destroys the player object and calls respawn to spawn new player object.
     public static void KillPlayer(PlayerController player)
     {
         Destroy(player.gameObject);
         gameController.RespawnPlayer();
     }
 
+    // Function to set ink resource back to full.
+    public static void FillInkResource()
+    {
+        gameController.ink = 100;
+    }
 
 }
