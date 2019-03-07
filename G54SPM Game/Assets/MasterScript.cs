@@ -33,7 +33,7 @@ public class MasterScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        // Below commented out code changes value of playingState when space is pressed.
+        // Below ccode changes value of playingState when space is pressed.
         // Refactor for proper implementation of state change, including a level reset when it
         // cycles back from true to false. 
        if (Input.GetKeyDown("space"))
@@ -61,8 +61,9 @@ public class MasterScript : MonoBehaviour {
         Debug.Log("Respawn has been called.");
         yield return new WaitForSeconds(spawnDelay);
 
-        Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation);
+        GameObject effectClone = Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation).gameObject;
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
+        Destroy(effectClone, 3f);
         playingState = false; //Return to drawing state.
     }
 
@@ -71,11 +72,11 @@ public class MasterScript : MonoBehaviour {
     {
         Debug.Log("KillPlayer was called.");
         Destroy(player.gameObject);
-        //gameController.RespawnPlayer();
         gameController.StartCoroutine(gameController.RespawnPlayer());
     }
 
     // Function to set ink resource back to full.
+    // REFACTOR: Do not make static
     public static void FillInkResource()
     {
         gameController.ink = 100;
