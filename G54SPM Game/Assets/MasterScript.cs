@@ -6,18 +6,23 @@ public class MasterScript : MonoBehaviour {
     public static MasterScript gameController;
     public static bool playingState = false;    //Keeps trackof whether the game is currently in set up or playing stage.
     public static int spawnDelay = 2;
+
+    // Boundary Variables
     public static int minY = -8;
     public static int maxY = 8;
     public static int minX = -16;
     public static int maxX = 16;
 
-	// Use this for initialization
-    // We ensure there is only ever one instance of the MasterScript running.
-	void Start () {
+    // Respawn Variables
+    public Transform playerCharacter;
+    public Transform spawnPoint;
+
+    // Instantiates MasterScript and spawns initial Player Character.
+    void Start () {
         if (gameController == null)
         { 
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MasterScript>();
-            RespawnPlayer();
+            SpawnPlayer(); 
         }     		
 	}
 
@@ -39,15 +44,18 @@ public class MasterScript : MonoBehaviour {
         } 
     }
 
-    public Transform playerCharacter;
-    public Transform spawnPoint;
+    // Initial function for spawning player at respawn position.
+    public void SpawnPlayer() 
+    {
+        Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
+    }
 
+    // Function for respawning player after player death.
     public void RespawnPlayer()
     {
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
         playingState = false;
         //Debug.Log("Particles go here!");
-        Debug.Log("Touched a boundary.");
     }
 
     public static void KillPlayer(PlayerController player)

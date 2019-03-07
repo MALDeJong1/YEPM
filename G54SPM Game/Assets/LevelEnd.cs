@@ -16,6 +16,7 @@ public class LevelEnd : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         Debug.Log("You have completed the level!");
+        MasterScript.playingState = false;
+        Debug.Log("You have completed the level!");
     }
 }
