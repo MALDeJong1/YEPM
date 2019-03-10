@@ -13,7 +13,12 @@ public class MasterScript : MonoBehaviour {
     public static int maxX = 16;
 
     // Basic Game Logic Variables
-    private int ink; //Stores ink resource.
+    private int _ink; //Stores ink resource.
+    public int Ink
+    {
+        get { return _ink; }
+        set { _ink = value; }
+    }
 
     // Respawn Variables
     public Transform playerCharacter;
@@ -27,13 +32,13 @@ public class MasterScript : MonoBehaviour {
         { 
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MasterScript>();
             SpawnPlayer();
-            FillInkResource();
+            Ink = 100;
         }     		
 	}
 
     // Update is called once per frame
     void Update () {
-        // Below commented out code changes value of playingState when space is pressed.
+        // Below ccode changes value of playingState when space is pressed.
         // Refactor for proper implementation of state change, including a level reset when it
         // cycles back from true to false. 
        if (Input.GetKeyDown("space"))
@@ -61,8 +66,9 @@ public class MasterScript : MonoBehaviour {
         Debug.Log("Respawn has been called.");
         yield return new WaitForSeconds(spawnDelay);
 
-        Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation);
+        GameObject effectClone = Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation).gameObject;
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
+        Destroy(effectClone, 3f);
         playingState = false; //Return to drawing state.
     }
 
@@ -71,14 +77,12 @@ public class MasterScript : MonoBehaviour {
     {
         Debug.Log("KillPlayer was called.");
         Destroy(player.gameObject);
-        //gameController.RespawnPlayer();
         gameController.StartCoroutine(gameController.RespawnPlayer());
     }
 
     // Function to set ink resource back to full.
-    public static void FillInkResource()
+    public void FillInkResource()
     {
-        gameController.ink = 100;
+        Ink = 100;
     }
-
 }
