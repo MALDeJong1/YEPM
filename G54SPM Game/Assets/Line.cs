@@ -16,6 +16,11 @@ public class Line : MonoBehaviour
 
     List<Vector2> points;
 
+    public int getNumPoints()
+    {
+        return points.Count;
+    }
+
     void Start()
     {
        // gameController = GameObject.Find("GameController");
