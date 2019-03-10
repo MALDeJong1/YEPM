@@ -52,9 +52,9 @@ public class Line : MonoBehaviour
 
     void Update()
     {
-        if (!MasterScript.playingState && Input.GetKeyDown(KeyCode.C)) //Ifall lines are removed...
+        if (!MasterScript.playingState && Input.GetKeyDown(KeyCode.C)) //If all lines are removed...
         {
-            MasterScript.FillInkResource(); //Refill the ink resource back to full.
+            MasterScript.gameController.FillInkResource(); //Refill the ink resource back to full.
             Destroy(this.gameObject); // Destroy all lines.
         }
     }

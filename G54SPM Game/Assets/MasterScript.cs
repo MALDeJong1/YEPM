@@ -13,7 +13,12 @@ public class MasterScript : MonoBehaviour {
     public static int maxX = 16;
 
     // Basic Game Logic Variables
-    private int ink; //Stores ink resource.
+    private int _ink; //Stores ink resource.
+    public int Ink
+    {
+        get { return _ink; }
+        set { _ink = value; }
+    }
 
     // Respawn Variables
     public Transform playerCharacter;
@@ -27,7 +32,7 @@ public class MasterScript : MonoBehaviour {
         { 
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MasterScript>();
             SpawnPlayer();
-            FillInkResource();
+            Ink = 100;
         }     		
 	}
 
@@ -76,10 +81,8 @@ public class MasterScript : MonoBehaviour {
     }
 
     // Function to set ink resource back to full.
-    // REFACTOR: Do not make static
-    public static void FillInkResource()
+    public void FillInkResource()
     {
-        gameController.ink = 100;
+        Ink = 100;
     }
-
 }
