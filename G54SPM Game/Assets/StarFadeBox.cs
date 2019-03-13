@@ -36,5 +36,10 @@ public class StarFadeBox : MonoBehaviour
 
             transform.localScale = new Vector2(transform.localScale.x, boxHeight);
         }
+
+        else
+        {
+            transform.localScale = new Vector2(transform.localScale.x, 0);
+        }
 	}
 }
