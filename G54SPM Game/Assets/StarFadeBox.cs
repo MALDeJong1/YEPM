@@ -32,7 +32,7 @@ public class StarFadeBox : MonoBehaviour
 
         else if(totalPointsUsed > lowerLimitInk)
         {
-            float boxHeight = totalPointsUsed * fullBoxHeight / (upperLimitInk - lowerLimitInk);
+            float boxHeight = (totalPointsUsed - lowerLimitInk) * fullBoxHeight / (upperLimitInk - lowerLimitInk);
 
             transform.localScale = new Vector2(transform.localScale.x, boxHeight);
         }
