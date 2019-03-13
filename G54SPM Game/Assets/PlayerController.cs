@@ -34,4 +34,12 @@ public class PlayerController : MonoBehaviour
             MasterScript.KillPlayer(this);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Enemy" || collision.gameObject.tag == "Enemy")
+        {
+            MasterScript.KillPlayer(this);
+        }
+    }
 }
