@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 1196791142}
   - component: {fileID: 1196791141}
   m_Layer: 5
-  m_Name: Level 2
+  m_Name: Level 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,7 +704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 2
+  m_Text: Level 4
 --- !u!222 &1196791142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -740,8 +740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726b857e001cbe148bfa01cf1a9f6566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerLimitInk: 150
-  upperLimitInk: 200
+  lowerLimitInk: 60
+  upperLimitInk: 80
 --- !u!212 &1244723968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowerLimitInk: 0
-  upperLimitInk: 150
+  upperLimitInk: 60
 --- !u!1 &2110569005
 GameObject:
   m_ObjectHideFlags: 0
