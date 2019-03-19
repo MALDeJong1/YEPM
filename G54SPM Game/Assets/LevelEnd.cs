@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class LevelEnd : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    public GameObject levelEndText;
+	
+    // Use this for initialization
+	void Start ()
+    {
+        levelEndText.SetActive(false);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -18,5 +22,6 @@ public class LevelEnd : MonoBehaviour {
     {
         MasterScript.playingState = false;
         Debug.Log("You have completed the level!");
+        levelEndText.SetActive(true);
     }
 }
