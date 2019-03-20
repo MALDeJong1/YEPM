@@ -59,7 +59,6 @@ public class Line : MonoBehaviour
     {
         if (!MasterScript.playingState && Input.GetKeyDown(KeyCode.C)) //If all lines are removed...
         {
-            MasterScript.gameController.FillInkResource(); //Refill the ink resource back to full.
             Destroy(this.gameObject); // Destroy all lines.
         }
     }

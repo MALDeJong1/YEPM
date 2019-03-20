@@ -6,7 +6,9 @@ public class StarFadeBox : MonoBehaviour
 {
     public int lowerLimitInk;
     public int upperLimitInk;
+
     private float fullBoxHeight;
+    private int totalPointsUsed;
 
     void Start ()
     {
@@ -16,7 +18,7 @@ public class StarFadeBox : MonoBehaviour
 
 	void Update ()
     {
-        int totalPointsUsed = 0;
+        totalPointsUsed = 0;
 
         Line[] lines = FindObjectsOfType<Line>();
         foreach (Line line in lines)
