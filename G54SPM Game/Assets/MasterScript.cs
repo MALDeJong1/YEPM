@@ -20,7 +20,7 @@ public class MasterScript : MonoBehaviour {
     public int spawnDelay = 1;
 
     // Load next level Variables
-    public int levelTransitionDelay = 1;
+    public int levelTransitionDelay = 2;
 
     // Instantiates MasterScript and spawns initial Player Character.
     void Start () {
@@ -38,15 +38,20 @@ public class MasterScript : MonoBehaviour {
         // cycles back from true to false. 
        if (Input.GetKeyDown("space"))
         {
-            if (playingState)
+           /* if (playingState)
             {
                 playingState = false;
-            }
-            else
+            }*/
+            if (!playingState)
             {
                 playingState = true;
            }
         } 
+       if (Input.GetKeyDown("r")) //Keybinding for resetting the level.
+        {
+            if (playingState)
+                ResetLevel();
+        }
     }
 
     // Initial function for spawning player at respawn position.
@@ -89,5 +94,11 @@ public class MasterScript : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+    }
+
+    private void ResetLevel()
+    {
+        playingState = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
