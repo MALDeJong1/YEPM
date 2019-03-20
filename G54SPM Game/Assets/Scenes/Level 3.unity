@@ -186,7 +186,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &69885815
 RectTransform:
@@ -566,12 +566,12 @@ Prefab:
     - target: {fileID: 224003087257634502, guid: d3660566fb097ed4a8a88a2405c83f46,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -39
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 224003087257634502, guid: d3660566fb097ed4a8a88a2405c83f46,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 181
+      value: -34
       objectReference: {fileID: 0}
     - target: {fileID: 224003087257634502, guid: d3660566fb097ed4a8a88a2405c83f46,
         type: 2}
@@ -612,6 +612,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224003087257634502, guid: d3660566fb097ed4a8a88a2405c83f46,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3660566fb097ed4a8a88a2405c83f46, type: 2}
