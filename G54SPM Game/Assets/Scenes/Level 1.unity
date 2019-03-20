@@ -802,6 +802,11 @@ Prefab:
       propertyPath: failNoise
       value: 
       objectReference: {fileID: 759987481}
+    - target: {fileID: 114172133790507054, guid: df37e2e82fa5ce44abfb252ae2636da3,
+        type: 2}
+      propertyPath: fallNoise
+      value: 
+      objectReference: {fileID: 759987481}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df37e2e82fa5ce44abfb252ae2636da3, type: 2}
   m_IsPrefabAsset: 0
