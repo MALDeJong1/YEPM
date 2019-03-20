@@ -19,6 +19,9 @@ public class MasterScript : MonoBehaviour {
     public Transform spawnEffect;
     public int spawnDelay = 1;
 
+    // Load next level Variables
+    public int levelTransitionDelay = 1;
+
     // Instantiates MasterScript and spawns initial Player Character.
     void Start () {
         if (gameController == null)
@@ -72,11 +75,19 @@ public class MasterScript : MonoBehaviour {
         gameController.StartCoroutine(gameController.RespawnPlayer());
     }
 
-    // Function that is called when the player wins a level and transitions to the next.
+    // Function that is called when the player wins a level to transition to the next.
     public static void LevelTransition()
     {
         playingState = false; // No longer in playingState because the player has won the level.
+        gameController.StartCoroutine(gameController.LoadNextLevel());
+    }
+
+    // Function that handles loading the next level, provided there is one.
+    private IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(levelTransitionDelay);
         if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 }
