@@ -2,22 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class to handle Player related logic.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+    // Sound effect related variables.
     public AudioSource fallNoise;
     public AudioSource eatingNoise;
 
+    // Player's rigidbody.
     private Rigidbody2D rb;
-    //private GameObject gameController;
 
-    // Use this for initialization
+    /// <summary>
+    /// Initialises the player's rigidbody component.
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //gameController = GameObject.Find("GameController");
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Sets player to be affected by gravity depending on whether the game is in its playing state or not.
+    /// Checks if player is still within the boundaries set in the MasterController, and kills them if not.
+    /// </summary>
     void Update()
     {
         if (MasterScript.playingState)
@@ -29,7 +37,7 @@ public class PlayerController : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
         }
 
-        //Check whether player is out of the bounds defined in the GameController's Masterscript. If so, kill the player.
+        // If the player is out of bounds, kill them.
         if(transform.position.y <= MasterScript.minY || transform.position.y >= MasterScript.maxY || transform.position.x <= MasterScript.minX || transform.position.x >= MasterScript.maxX)
         {
             fallNoise.Play();
@@ -38,6 +46,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks whether collision is with an enemy and kills the player if so.
+    /// </summary>
+    /// <param name="collision">The GameObject that collision occurred with.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Enemy" || collision.gameObject.tag == "Enemy")

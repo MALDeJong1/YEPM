@@ -2,13 +2,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The class that handles much of the overarching game logic.
+/// </summary>
 public class MasterScript : MonoBehaviour {
 
+    // Public variables with general, overarching use.
     public static MasterScript gameController;
-    public static bool playingState = false;    //Keeps trackof whether the game is currently in set up or playing stage.
+    public static bool playingState = false;    //Keeps track of whether the game is currently in set up or playing stage.
     public AudioSource respawnNoise;
 
-    // Boundary Variables
+    // Boundary Variables - if the player goes out of these bounds, they die.
     public static int minY = -8;
     public static int maxY = 8;
     public static int minX = -16;
@@ -23,7 +27,9 @@ public class MasterScript : MonoBehaviour {
     // Load next level Variables
     public int levelTransitionDelay = 2;
 
-    // Instantiates MasterScript and spawns initial Player Character.
+    /// <summary>
+    ///     Instantiates MasterScript and spawns initial Player Character.
+    /// </summary>
     void Start () {
         if (gameController == null)
         { 
@@ -32,36 +38,36 @@ public class MasterScript : MonoBehaviour {
         }     		
 	}
 
-    // Update is called once per frame
+    /// <summary>
+    /// Checks for space or r presses. Will set the game's playing state to true on space, and reset the full level on r.
+    /// </summary>
     void Update () {
-        // Below ccode changes value of playingState when space is pressed.
-        // Refactor for proper implementation of state change, including a level reset when it
-        // cycles back from true to false. 
        if (Input.GetKeyDown("space"))
         {
-           /* if (playingState)
-            {
-                playingState = false;
-            }*/
             if (!playingState)
             {
                 playingState = true;
            }
         } 
-       if (Input.GetKeyDown("r")) //Keybinding for resetting the level.
+       if (Input.GetKeyDown("r"))
         {
-            if (playingState)
+            if (playingState) // Only reset if the game is in playing state.
                 ResetLevel();
         }
     }
 
-    // Initial function for spawning player at respawn position.
+    /// <summary>
+    /// Spawns the player on the spawnPoint position.
+    /// </summary>
     public void SpawnPlayer() 
     {
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
     }
 
-    // Function for respawning player after player death.
+    /// <summary>
+    /// Respawns player on spawnPoint if they die after a short delay.
+    /// </summary>
+    /// <returns>Delay until respawn.</returns>
     public IEnumerator RespawnPlayer()
     {
         Debug.Log("Respawn has been called.");
@@ -74,7 +80,10 @@ public class MasterScript : MonoBehaviour {
         playingState = false; //Return to drawing state.
     }
 
-    // Function to kill the player. Destroys the player object and calls respawn to spawn new player object.
+    /// <summary>
+    /// Kills (destroys) the player object and calls RespawnPlayer to bring them back to life.
+    /// </summary>
+    /// <param name="player">Player GameObject</param>
     public static void KillPlayer(PlayerController player)
     {
         Debug.Log("KillPlayer was called.");
@@ -82,14 +91,19 @@ public class MasterScript : MonoBehaviour {
         gameController.StartCoroutine(gameController.RespawnPlayer());
     }
 
-    // Function that is called when the player wins a level to transition to the next.
+    /// <summary>
+    /// Transitions the game to the nxt level.
+    /// </summary>
     public static void LevelTransition()
     {
-        playingState = false; // No longer in playingState because the player has won the level.
+        playingState = false; // We will no longer be in playingState because the player has won the level.
         gameController.StartCoroutine(gameController.LoadNextLevel());
     }
 
-    // Function that handles loading the next level, provided there is one.
+    /// <summary>
+    /// Loads the next level provided there is one.
+    /// </summary>
+    /// <returns> Delay until next level is loaded. </returns>
     private IEnumerator LoadNextLevel()
     {
         yield return new WaitForSeconds(levelTransitionDelay);
@@ -98,6 +112,9 @@ public class MasterScript : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Resets the level entirely.
+    /// </summary>
     private void ResetLevel()
     {
         playingState = false;
