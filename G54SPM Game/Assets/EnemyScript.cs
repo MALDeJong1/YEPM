@@ -13,9 +13,6 @@ public class EnemyScript : MonoBehaviour {
     private Vector3 startPos;
     private Vector3 endPos;
     private Coroutine movementRoutine = null;
-    
-    //Keep track of whether the enemy is moving.
-    private bool moving = false;
 
 	// Use this for initialization
 	void Start ()
@@ -32,7 +29,6 @@ public class EnemyScript : MonoBehaviour {
             if (movementRoutine == null)
             {
                 movementRoutine = StartCoroutine(Move(startPos, endPos, ac, 3.0f));
-                moving = true;
             }
         }
         if (!MasterScript.playingState)
