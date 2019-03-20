@@ -6,6 +6,7 @@ public class MasterScript : MonoBehaviour {
 
     public static MasterScript gameController;
     public static bool playingState = false;    //Keeps trackof whether the game is currently in set up or playing stage.
+    public AudioSource respawnNoise;
 
     // Boundary Variables
     public static int minY = -8;
@@ -66,6 +67,7 @@ public class MasterScript : MonoBehaviour {
         Debug.Log("Respawn has been called.");
         yield return new WaitForSeconds(spawnDelay);
 
+        respawnNoise.Play();
         GameObject effectClone = Instantiate(spawnEffect, spawnPoint.position, spawnPoint.rotation).gameObject;
         Instantiate(playerCharacter, spawnPoint.position, spawnPoint.rotation);
         Destroy(effectClone, 3f);

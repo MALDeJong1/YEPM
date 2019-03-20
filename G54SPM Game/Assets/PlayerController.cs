@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public AudioSource failNoise;
+    public AudioSource fallNoise;
     public AudioSource eatingNoise;
+
     private Rigidbody2D rb;
     //private GameObject gameController;
 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
         //Check whether player is out of the bounds defined in the GameController's Masterscript. If so, kill the player.
         if(transform.position.y <= MasterScript.minY || transform.position.y >= MasterScript.maxY || transform.position.x <= MasterScript.minX || transform.position.x >= MasterScript.maxX)
         {
-            failNoise.Play();
+            fallNoise.Play();
             Debug.Log("Player has gone out of bounds.");
             MasterScript.KillPlayer(this);
         }
