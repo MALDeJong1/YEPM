@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MasterScript : MonoBehaviour {
 
@@ -69,5 +70,13 @@ public class MasterScript : MonoBehaviour {
         Debug.Log("KillPlayer was called.");
         Destroy(player.gameObject);
         gameController.StartCoroutine(gameController.RespawnPlayer());
+    }
+
+    // Function that is called when the player wins a level and transitions to the next.
+    public static void LevelTransition()
+    {
+        playingState = false; // No longer in playingState because the player has won the level.
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

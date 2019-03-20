@@ -20,8 +20,8 @@ public class LevelEnd : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        MasterScript.playingState = false;
-        Debug.Log("You have completed the level!");
         levelEndText.SetActive(true);
+        //ADD DELAY HERE
+        MasterScript.LevelTransition();
     }
 }
