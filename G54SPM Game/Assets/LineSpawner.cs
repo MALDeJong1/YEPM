@@ -2,26 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The line spawning script.
+/// </summary>
 public class LineSpawner : MonoBehaviour
 {
-
+    // Public variable for the linePrefab that is used to draw lines.
     public GameObject linePrefab;
-    private MasterScript masterScript;
-    private GameObject gameController;
-
+    
     Line activeLine;
 
-    // Use this for initialization
-    void Start()
-    {
-        gameController = GameObject.Find("GameController");
-        masterScript = gameController.GetComponent<MasterScript>();
-    }
-
+    /// <summary>
+    /// Draws a line (using the linePrefab) if the game is in its playing state. Will not allow the drawing of lines if that is no longer so.
+    /// </summary>
     void Update()
     {
-        //If the game is in its playingState, we're not allowed to draw any more lines. :)
-        if (!masterScript.playingState)
+        if (!MasterScript.playingState) 
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -33,6 +29,7 @@ public class LineSpawner : MonoBehaviour
             {
                 activeLine = null;
             }
+
 
             if (activeLine != null)
             {

@@ -2,22 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The script for instantiating lines, to be spawned by a LineSpawner.
+/// </summary>
 public class Line : MonoBehaviour
 {
+    // Public variables for lineRenderer, an edgeCollider so the player doesn't fall through drawn lines, and the minimum distance before mouse movement results in the addition of a new vertice.
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float floatDistance = .1f;
 
-        /*
-            To calculate the amount of ink used, use the floatDistance variable * the list's points.Count
-            Send this to the MasterScript, which will keep track of it.
-         */
-
+    // A list of 2D vectors storing vertices between which lines can be drawn.
     List<Vector2> points;
 
-    //Function is public because it needs to be accessed by the 
-    //Script that will be creating the lines. 
-    //Will be called while we're still updating the line.
+    /// <summary>
+    /// Returns the number of vertices in the points list.
+    /// </summary>
+    /// <returns>Number of vertices within the points list.</returns>
+    public int getNumPoints()
+    {
+        return points.Count;
+    }
+
+    /// <summary>
+    /// Will update existing line or draw a new one, based on whether there is currently an active line being drawn.
+    /// </summary>
+    /// <param name="mousePosition">Current mouse position</param>
     public void UpdateLine(Vector2 mousePosition)
     {
         if (points == null)
@@ -33,9 +43,13 @@ public class Line : MonoBehaviour
             SetPoint(mousePosition);
     }
 
+    /// <summary>
+    /// Adds the mouse position to the end of the current line's list, then adds edge collider to the emergent line. 
+    /// </summary>
+    /// <param name="point">Current mouse position</param>
     void SetPoint(Vector2 point)
     {
-        points.Add(point); //Add mouse position onto the end of the list.
+        points.Add(point);
 
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPosition(points.Count - 1, point);
@@ -44,4 +58,14 @@ public class Line : MonoBehaviour
             edgeCollider.points = points.ToArray();
     }
 
+    /// <summary>
+    /// Checks whether the c key is pressed while not in playing state, so the line knows whether to destroy itself.
+    /// </summary>
+    void Update()
+    {
+        if (!MasterScript.playingState && Input.GetKeyDown(KeyCode.C)) 
+        {
+            Destroy(this.gameObject); // Destroy all lines.
+        }
+    }
 }
